@@ -1,0 +1,18 @@
+
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET     /invoices                      controllers.InvoiceController.getInvoices(startSubscribeDate: java.time.LocalDate, endSubscribeDate: java.time.LocalDate)
+# An example controller showing how to write asynchronous code
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Security
+GET     /oathredirect               controllers.OauthCallbackController.handle(code: Option[String], state: Option[String], realmId: Option[String],  error: Option[String], error_description: Option[String])
+
+      
