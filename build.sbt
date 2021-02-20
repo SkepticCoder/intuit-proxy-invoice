@@ -19,6 +19,11 @@ val quilVersion = "3.6.1"
 // platform libraries
 libraryDependencies ++= Seq(jdbc, ehcache, ws, specs2 % Test, guice)
 
+// test libraries
+libraryDependencies ++= Seq(
+  "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0" % Test,
+  "org.mockito" %% "mockito-scala" % "1.16.25" % Test
+)
 
 // intuit platforms
 libraryDependencies ++= Seq(

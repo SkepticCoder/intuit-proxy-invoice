@@ -1,6 +1,7 @@
 package dao.intuit
 
 import com.intuit.ipp.core.{Context, IEntity}
+import com.intuit.ipp.services.QueryResult
 import dao.Repository
 import play.api.Logging
 import services.intuit.base.DataServiceProvider
@@ -9,11 +10,14 @@ import scala.collection.mutable
 import scala.jdk.CollectionConverters.CollectionHasAsScala
 import scala.reflect.ClassTag
 
-abstract class IntuitRepository[T <: IEntity : ClassTag](dataService: DataServiceProvider) extends Repository[T] with Logging{
+abstract class IntuitRepository[T <: IEntity : ClassTag](dataService: DataServiceProvider) extends Repository[T] with Logging {
 
   val instanceType = newInstance[T]
 
-  private def newInstance[T: ClassTag] = implicitly[ClassTag[T]].runtimeClass.newInstance.asInstanceOf[T]
+  private def newInstance[T: ClassTag] = implicitly[ClassTag[T]].runtimeClass
+                                                                    .getDeclaredConstructor()
+                                                                    .newInstance()
+                                                                    .asInstanceOf[T]
 
 
   override def findAll(implicit context: Context) = {
@@ -26,7 +30,8 @@ abstract class IntuitRepository[T <: IEntity : ClassTag](dataService: DataServic
     list
   }
 
-  protected def findByQueryWithResult(query: String)(implicit context: Context) = {
+  protected def findByQueryWithResult(query: String)(implicit context: Context): QueryResult = {
     dataService.getDataService().executeQuery(query)
   }
+
 }

@@ -1,6 +1,6 @@
-package dao.intuit
+package dao.intuit.schema
 
-import io.getquill.{Embedded, Literal, MirrorSqlDialect, SqlMirrorContext}
+import io.getquill.Embedded
 import io.getquill.mirrorContextWithQueryProbing.{querySchema, quote}
 
 import java.time.LocalDate

@@ -3,8 +3,8 @@ package services
 
 import com.intuit.ipp.core.Context
 import com.intuit.ipp.data.Invoice
-import config.{AppConfig, AppConfigFactory}
-import dao.intuit.InvoiceRepository
+import config.AppConfigFactory
+import dao.intuit.{IntuitRepository, InvoiceIntuitRepository, InvoiceRepository}
 
 import java.time.LocalDate
 import javax.inject.{Inject, Singleton}
